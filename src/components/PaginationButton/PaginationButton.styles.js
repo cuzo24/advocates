@@ -1,24 +1,25 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { breakpoints } from '../../utils/breakpoints.js';
 
 export const Button = styled.div`
-  position: ${props => props.navigation ? "absolute" : "relative"};
+  position: relative;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  width: ${props => props.navigation ? "unset" : "2rem"};
-  min-width: ${props => props.navigation ? "6rem" : "unset"};
   height: 2rem;
-  padding: ${props => props.navigation ? "0 1.25rem" : "unset"};
   background-color: rgb(var(--clr-peach) / 0.25);
-  color: var(--clr-light-gray);
   border-radius: 0.1875rem;
   overflow: hidden;
   cursor: ${props => props.active ? 'auto' : 'pointer'};
-  visibility: ${props => props.navigation ? "hidden" : "visible"};
-  pointer-events: ${props => props.navigation ? "none" : "all"};
+
+  ${({ navigation, icon }) => css`
+    width: ${navigation ? "0" : "2rem"};
+    padding: ${navigation ? "0" : "0 0.25rem"};
+    visibility: ${navigation ? "hidden" : "visible"};
+    pointer-events: ${navigation ? "none" : "all"};
+  `};
 
   .pagination-button__number,
   .pagination-button__text {
@@ -28,6 +29,15 @@ export const Button = styled.div`
 
   .pagination-button__text {
     font-weight: 600;
+  }
+
+  .pagination-button__svg {
+    display: flex;
+    z-index: 1;
+
+    svg {
+      flex: 1;
+    }
   }
 
   &::before {
@@ -51,9 +61,33 @@ export const Button = styled.div`
     }
   }
 
+  @media screen and (${breakpoints.xs}) {
+    ${({ navigation, available, icon }) => css`
+    width: ${navigation && !icon ? "0" : "2rem"};
+    padding: ${navigation && !icon ? "0" : "0 0.25rem"};
+    visibility: ${
+      navigation && !available
+      ? "hidden"
+      : icon || !navigation
+        ? "visible"
+        : "hidden"
+    };
+    pointer-events: ${
+      navigation && !available
+      ? "none"
+      : icon || !navigation
+        ? "all"
+        : "none"
+    };
+  `};
+  }
+
   @media screen and (${breakpoints.sm}) {
-    visibility: ${props => props.navigation && !props.available ? "hidden" : "visible"};
-    pointer-events: ${props => props.navigation && !props.available ? "none" : "all"};
-    position: ${props => props.navigation && !props.available ? "absolute" : "relative"};
+    ${({ navigation, available, icon }) => css`
+      min-width: ${navigation && !icon ? "6rem" : "unset"};
+      padding: ${navigation && !icon ? "0 1.25rem" : "0 0.25rem"};
+      visibility: ${navigation && !available ? "hidden" : "visible"};
+      pointer-events: ${navigation && !available ? "none" : "all"};
+  `};
   }
 `;

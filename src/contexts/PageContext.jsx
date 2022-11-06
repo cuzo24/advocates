@@ -17,6 +17,14 @@ export function PageContextProvider({ children }) {
         if (page >= totalPages) return;
         setPage(prevPage => prevPage + 1);
       },
+      firstPage: () => {
+        if (page <= 1) return;
+        setPage(1);
+      },
+      lastPage: () => {
+        if (page >= totalPages) return;
+        setPage(totalPages);
+      },
       setPage,
       setTotalPages
     };

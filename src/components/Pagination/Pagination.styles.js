@@ -1,15 +1,19 @@
 import styled from 'styled-components';
-import { breakpoints } from '../../utils/breakpoints.js';
+import { breakpoints } from '../../utils/breakpoints';
 
 export const WrapperTop = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-end;
   gap: 0.5rem;
   padding-top: 2rem;
 
-  @media screen and (${breakpoints.sm}) {
-    justify-content: space-between;
+  .button-prev {
+    margin-right: auto;
+  }
+
+  .button-next {
+    margin-left: auto;
   }
 `;
 
@@ -25,6 +29,10 @@ export const ButtonsContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.25rem;
   padding-top: 2rem;
+
+  @media screen and (${breakpoints.sm}){
+    gap: 0.5rem;
+  }
 `;
