@@ -2,33 +2,38 @@ import React, { useEffect, useState } from 'react';
 
 // Components
 import AdvocateCard from '../../components/AdvocateCard/AdvocateCard.jsx';
+import Pagination from '../../components/Pagination/Pagination.jsx';
+
+// Hooks
+import { usePageStateContext } from '../../hooks/usePageStateContext.jsx';
+import { usePageApiContext } from '../../hooks/usePageApiContext.jsx';
+
+// Api
+import { API } from '../../services/api.js';
 
 // Styles
 import { Container, Grid } from './Advocates.styles.js';
 
 export default function Advocates() {
   const [advocates, setAdvocates] = useState([]);
-  const [page, setPage] = useState(1);
+  const { page } = usePageStateContext();
+  const { setTotalPages } = usePageApiContext();
 
   useEffect(() => {
     async function fetchData(page = 1) {
-      try {
-        const response = await fetch(`https://cados.up.railway.app/advocates/?page=${page}`);
-        const data = await response.json();
-        setAdvocates(data);
-      } catch (err) {
-        console.error(err);
-      }
+      const data = await API.getAdvocatesByPage(page);
+      setAdvocates(data.advocates);
+      setTotalPages(data.pagination['total_pages']);
     }
 
-    fetchData();
-  }, []);
+    fetchData(page);
+  }, [page]);
 
   return (
     <Container>
       <h1>Advocates</h1>
       <Grid>
-        {advocates.advocates && advocates.advocates.map(advocate => {
+        {advocates.map(advocate => {
           return (
             <AdvocateCard
               key={advocate.username}
@@ -40,6 +45,7 @@ export default function Advocates() {
           );
         })}
       </Grid>
+      <Pagination />
     </Container>
   );
 }

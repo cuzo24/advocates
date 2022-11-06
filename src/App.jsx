@@ -5,6 +5,9 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home.jsx';
 import Advocates from './pages/Advocates/Advocates.jsx';
 
+// Contexts
+import { PageContextProvider } from './contexts/PageContext.jsx';
+
 // Layout
 import Navbar from './components/Navbar/Navbar.jsx';
 
@@ -16,7 +19,14 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Navbar />}>
         <Route index element={<Home />} />
-        <Route path="advocates" element={<Advocates />} />
+        <Route
+          path="advocates"
+          element={
+            <PageContextProvider key="advocates">
+              <Advocates />
+            </PageContextProvider>
+          }
+        />
       </Route>
     </Routes>
   );

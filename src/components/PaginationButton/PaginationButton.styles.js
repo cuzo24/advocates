@@ -11,7 +11,7 @@ export const Button = styled.div`
   height: 2rem;
   background-color: rgb(var(--clr-peach) / 0.25);
   color: var(--clr-light-gray);
-  border-radius: 50%;
+  border-radius: 0.1875rem;
   overflow: hidden;
   cursor: ${props => props.active ? 'auto' : 'pointer'};
 
