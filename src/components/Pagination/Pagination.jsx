@@ -7,7 +7,7 @@ import { usePageStateContext } from '../../hooks/usePageStateContext.jsx';
 import PaginationButton from '../PaginationButton/PaginationButton.jsx';
 
 // Styles
-import { Wrapper } from './Pagination.styles.js';
+import { WrapperTop, WrapperBottom, ButtonsContainer } from './Pagination.styles.js';
 
 export default function Pagination() {
   const DEFAULT_NUM_BUTTONS = 4;
@@ -36,8 +36,17 @@ export default function Pagination() {
   }
 
   return (
-    <Wrapper>
-      {buttonElements}
-    </Wrapper>
+    <div>
+      <WrapperTop>
+        <PaginationButton navigation available={page !== 1} text="Previous" previous />
+        <ButtonsContainer>
+          {buttonElements}
+        </ButtonsContainer>
+        <PaginationButton navigation available={page !== totalPages} text="Next" />
+      </WrapperTop>
+      <WrapperBottom>
+        Page {page} of {totalPages}
+      </WrapperBottom>
+    </div>
   );
 }
