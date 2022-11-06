@@ -18,7 +18,7 @@ export default function AdvocateCard(props) {
         <img className="card__img" src={props.profilePic} alt={`Profile pic of ${props.username}`} />
       </figure>
       <div className="card__body">
-        <Waves type={Math.floor(Math.random() * 4) + 1} />
+        <Waves type={Math.floor(Math.random() * 6) + 1} />
         <h3 className="card__title">{name}</h3>
         <p>@{props.username}</p>
         {

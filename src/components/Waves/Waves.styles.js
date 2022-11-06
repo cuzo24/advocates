@@ -17,6 +17,6 @@ export const WaveWrapper = styled.div`
   }
 
   path {
-    fill: ${props => props.color || 'rgb(var(--clr-peach) / 0.1)'};
+    fill: ${props => props.color || 'rgb(var(--clr-peach) / 0.15)'};
   }
 `;

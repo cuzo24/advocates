@@ -2,8 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   padding: 3rem 2rem;
-  background-color: rgb(240, 237, 242);
-  color: rgb(32, 34, 37);
+  background-color: rgb(var(--clr-peach) / 0.95);
 `;
 
 export const Button = styled.button`

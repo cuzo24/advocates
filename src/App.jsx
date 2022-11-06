@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 
 // Pages
 import Home from './pages/Home.jsx';
-import Advocates from './pages/Advocates.jsx';
+import Advocates from './pages/Advocates/Advocates.jsx';
 
 // Layout
 import Navbar from './components/Navbar/Navbar.jsx';
