@@ -7,6 +7,9 @@ import BreadCrumb from '../../components/BreadCrumb/BreadCrumb.jsx';
 // Api
 import { API } from '../../services/api.js';
 
+// Styles
+import { Container, AdvocateInfo } from './Advocate.styles.js';
+
 export default function Advocate() {
   const { username } = useParams();
   const [advocate, setAdvocate] = useState([]);
@@ -27,9 +30,26 @@ export default function Advocate() {
   ];
 
   return (
-    <div>
+    <main>
       <BreadCrumb path={path} />
-      {advocate && advocate.bio}
-    </div>
+      <Container>
+        {advocate &&
+          <AdvocateInfo>
+            <figure className="advocate__figure">
+              <img
+                className="advocate__img"
+                src={advocate["profile_pic"]}
+                alt={`Profile pic of ${advocate.username}`}
+              />
+            </figure>
+            <div className="advocate__data">
+              <h2>{advocate.name}</h2>
+              <h3>{advocate.username}</h3>
+              <p>{advocate.bio}</p>
+            </div>
+          </AdvocateInfo>
+        }
+      </Container>
+    </main>
   );
 }
