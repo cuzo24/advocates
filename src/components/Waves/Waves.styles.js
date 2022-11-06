@@ -5,6 +5,7 @@ export const WaveWrapper = styled.div`
   inset: 0;
   overflow: hidden;
   pointer-events: none;
+  z-index: -1;
 
   svg {
     position: absolute;
@@ -17,6 +18,6 @@ export const WaveWrapper = styled.div`
   }
 
   path {
-    fill: ${props => props.color || 'rgb(var(--clr-peach) / 0.15)'};
+    fill: ${props => props.color || 'rgb(var(--clr-peach) / 0.1)'};
   }
 `;

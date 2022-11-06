@@ -8,21 +8,27 @@ export const Card = styled.div`
   border-radius: 0.5rem;
   margin: calc(0.5 * var(--fs-hero)) 0 0;
   color: rgb(var(--clr-black));
+  cursor: pointer;
 
-  .card__figure {
+  .card__figure__wrapper {
     position: absolute;
     left: 0.5rem;
     top: calc(1.5 * var(--fs-hero));
     transform: translateY(-100%);
+  }
+
+  .card__figure {
     display: flex;
     margin: 0;
     padding: 0;
+    border-radius: 50%;
+    overflow: hidden;
   }
 
   .card__img {
     width: calc(2 * var(--fs-hero));
     height: auto;
-    border-radius: 50%;
+    transition: transform 300ms ease-in-out;
   }
 
   .card__body {
@@ -38,9 +44,25 @@ export const Card = styled.div`
   }
 
   .card__title {
+    position: relative;
     font-size: var(--fs-md);
     color: rgb(var(--clr-black));
-    max-width: 100%;
+    width: fit-content;
+
+    &::before {
+      --height: 3px;
+
+      position: absolute;
+      content: "";
+      bottom: var(--height);
+      left: 0;
+      width: 100%;
+      height: var(--height);
+      background-color: rgb(var(--clr-peach));
+      transform-origin: left center;
+      transform: scaleX(0);
+      transition: transform 250ms ease;
+    }
   }
 
   .card__twitter {
@@ -62,11 +84,25 @@ export const Card = styled.div`
     }
   }
 
+  @media (hover: hover) {
+    &:hover {
+      .card__img {
+        transform: scale(1.05);
+      }
+
+      .card__title {
+        &::before {
+          transform: scaleX(1);
+        }
+      }
+    }
+  }
+
   @media screen and (${breakpoints['lg']}) {
     margin-top: 0;
     overflow: hidden;
 
-    .card__figure {
+    .card__figure__wrapper {
       position: relative;
       left: 0;
       top: 0;
