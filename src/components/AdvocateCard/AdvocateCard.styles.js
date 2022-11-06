@@ -6,14 +6,15 @@ export const Card = styled.div`
   display: flex;
   border: 1px solid rgb(var(--clr-black) / 0.1);
   border-radius: 0.5rem;
-  margin: 1.75rem 0 0;
+  margin: calc(0.5 * var(--fs-hero)) 0 0;
   color: rgb(var(--clr-black));
 
   .card__figure {
     position: absolute;
-    left: 1rem;
-    top: 3rem;
+    left: 0.5rem;
+    top: calc(1.5 * var(--fs-hero));
     transform: translateY(-100%);
+    display: flex;
     margin: 0;
     padding: 0;
   }
@@ -26,19 +27,42 @@ export const Card = styled.div`
 
   .card__body {
     position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     flex: 1;
     color: rgb(var(--clr-gray));
-    word-break: break-all;
     hyphens: auto;
-    padding: 3rem 1rem 1rem;
+    word-break: break-all;
+    padding: calc(2 * var(--fs-hero)) 0.5rem 0.5rem;
   }
 
   .card__title {
-    font-size: var(--fs-lg);
+    font-size: var(--fs-md);
     color: rgb(var(--clr-black));
+    max-width: 100%;
   }
 
-  @media screen and (${breakpoints['xs']}) {
+  .card__twitter {
+    display: inline-block;
+    width: fit-content;
+    margin-top: auto;
+    border-radius: 50%;
+    overflow: hidden;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.375rem;
+    }
+
+    &:focus-within, &:hover {
+      background-color: rgb(var(--clr-light-gray) / 0.1);
+    }
+  }
+
+  @media screen and (${breakpoints['lg']}) {
     margin-top: 0;
     overflow: hidden;
 
@@ -47,20 +71,21 @@ export const Card = styled.div`
       left: 0;
       top: 0;
       transform: translateY(0);
-      display: flex;
-      width: min(200px, 50%);
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 0.5rem;
     }
 
     .card__img {
       height: auto;
-      width: 100%;
+      width: calc(3 * var(--fs-hero));
+      height: calc(3 * var(--fs-hero));
       object-fit: cover;
-      border-radius: 0;
     }
 
     .card__body {
-      word-break: normal;
-      padding: 1rem 0.75rem;
+      position: static;
+      padding: 0.75rem 0.5rem 0.75rem 0;
     }
   }
   `;

@@ -6,6 +6,10 @@ import { sizes, breakpoints } from '../utils/breakpoints.js';
 const Container = styled.main`
   padding: 0 0.5rem;
 
+  h1 {
+    font-size: var(--fs-xl);
+  }
+
   @media screen and (${breakpoints['xs']}) {
     padding: 0 0.75rem;
   }
@@ -24,15 +28,25 @@ const Container = styled.main`
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(26rem, 100%), 1fr));
-  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(11rem, 100%), 1fr));
+  gap: 0.25rem;
 
   @media screen and (${breakpoints['xs']}) {
-    gap: 1rem;
+    gap: 0.5rem;
   }
 
   @media screen and (${breakpoints['sm']}) {
-    gap: 1.25rem;
+    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
+  }
+
+  @media screen and (${breakpoints['md']}) {
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+  }
+
+  @media screen and (${breakpoints['lg']}) {
+    grid-template-columns: repeat(auto-fit, minmax(min(24rem, 100%), 1fr));
   }
 `;
 
